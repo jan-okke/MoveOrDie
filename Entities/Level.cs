@@ -24,6 +24,7 @@ namespace MoveOrDie.Entities
                     x++;
                 }
                 y++;
+                x = 0;
             }
         }
         public Level(Vector2 size, List<Position> positions)
