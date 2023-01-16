@@ -9,15 +9,16 @@ namespace MoveOrDie.Entities
 {
     internal class Level : Map
     {
-        public Level(int[][] data)
+        public Level(int[][] data, Vector2 playerPos)
         {
+            List<Position> pos = new();
             Size = new Vector2(data[0].Length, data.Length);
             int x = 0, y = 0;
             foreach (int[] array in data)
             {
                 foreach (int d in array)
                 {
-                    Positions.Add(new Position(
+                    pos.Add (new Position(
                         new Vector2(x, y),
                         PositionStateExtension.GetFromNumber(d)
                     ));
@@ -26,8 +27,10 @@ namespace MoveOrDie.Entities
                 y++;
                 x = 0;
             }
+            Init(Size, pos, playerPos);
         }
         public Level(Vector2 size, List<Position> positions)
-            : base(size, positions) { }
+            : base(size, positions, new Vector2(0, 0))
+        { }
     }
 }

@@ -11,8 +11,8 @@ namespace MoveOrDie.Entities
     {
         private int x, y;
 
-        public int X { get => x; }
-        public int Y { get => y; }
+        public int X { get => x; set => x = value; }
+        public int Y { get => y; set => y = value; }
 
         public Vector2(int x, int y)
         {

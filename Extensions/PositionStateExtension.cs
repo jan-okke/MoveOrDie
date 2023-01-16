@@ -16,6 +16,8 @@ namespace MoveOrDie.Extensions
                 PositionState.Empty => ". ",
                 PositionState.Player => "O ",
                 PositionState.Obstacle => "X ",
+                PositionState.Enemy => "E ",
+                PositionState.Goal => "G ",
                 _ => ""
             };
         }
@@ -26,6 +28,8 @@ namespace MoveOrDie.Extensions
                 0 => PositionState.Empty,
                 1 => PositionState.Player,
                 2 => PositionState.Obstacle,
+                3 => PositionState.Enemy,
+                4 => PositionState.Goal,
                 _ => throw new NotImplementedException(),
             };
         }

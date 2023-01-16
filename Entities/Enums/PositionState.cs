@@ -10,6 +10,8 @@ namespace MoveOrDie.Entities.Enums
     {
         Empty = 0,
         Player = 1,
-        Obstacle = 2
+        Obstacle = 2,
+        Enemy = 3,
+        Goal = 4,
     }
 }

@@ -13,12 +13,14 @@ namespace MoveOrDie.Factory
         public static Level Level1 = new Level(
             data: new int[][]
             {
-                new int[] {2, 2, 2, 2, 2},
-                new int[] {2, 1, 0, 0, 2},
-                new int[] {2, 2, 2, 0, 2},
-                new int[] {2, 0, 0, 0, 2},
-                new int[] {2, 2, 2, 2, 2}
-            }
+                new int[] {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+                new int[] {2, 0, 0, 0, 0, 0, 0, 3, 4, 0, 2},
+                new int[] {2, 2, 2, 0, 0, 2, 0, 2, 2, 0, 2},
+                new int[] {2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 2},
+                new int[] {2, 2, 2, 2, 0, 3, 0, 0, 2, 3, 2},
+                new int[] {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2}
+            },
+            playerPos: new Vector2(1, 1)
         );
     }
 }
