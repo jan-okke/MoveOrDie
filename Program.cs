@@ -1,15 +1,13 @@
 ﻿using MoveOrDie.Entities;
 using MoveOrDie.Entities.Enums;
 using MoveOrDie.Factory;
-using OpenTK.Windowing.Desktop;
 
 namespace MoveOrDie
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static bool PlayLevel(Level level)
         {
-            var level = LevelFactory.Level1;
             while (true)
             {
                 Console.Clear();
@@ -32,7 +30,7 @@ namespace MoveOrDie
                     Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine("You lost!");
                     Console.ResetColor();
-                    break;
+                    return false;
                 }
                 if (level.MapComplete)
                 {
@@ -40,10 +38,59 @@ namespace MoveOrDie
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("You won!");
                     Console.ResetColor();
-                    break;
+                    return true;
                 }
             }
-            Console.ReadLine();
+        }
+        static Level ChooseLevel()
+        {
+            int selectedLevel = 0;
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Choose your level:");
+                for (int i = 0; i < LevelFactory.Levels.Count; i++)
+                {
+                    Level l = LevelFactory.Levels[i];
+                    if (i == selectedLevel) { Console.ForegroundColor = ConsoleColor.DarkGreen; }
+                    if (l.Unlocked)
+                    {
+                        Console.WriteLine($"=> {l.Name}");
+                    }
+                    Console.ResetColor();
+                }
+                var key = Console.ReadKey(true);
+                switch (key.Key)
+                {
+                    case ConsoleKey.Spacebar:
+                        return LevelFactory.Levels[selectedLevel];
+                    case ConsoleKey.UpArrow:
+                        if (selectedLevel == 0) continue;
+                        selectedLevel--;
+                        break;
+                    case ConsoleKey.DownArrow:
+                        if (selectedLevel == LevelFactory.Levels.Count) continue;
+                        if (LevelFactory.Levels[selectedLevel + 1].Unlocked) selectedLevel++;
+                        break;
+                }
+            }
+        }
+        static void Main(string[] args)
+        {
+            while (true)
+            {
+                var level = ChooseLevel();
+                var index = LevelFactory.Levels.IndexOf(level);
+                if (PlayLevel(level))
+                {
+                    try
+                    {
+                        LevelFactory.Levels[index + 1].Unlock();
+                    }
+                    catch { }
+                }
+                Console.ReadLine();
+            }
         }
     }
 }

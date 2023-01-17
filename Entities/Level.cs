@@ -9,8 +9,11 @@ namespace MoveOrDie.Entities
 {
     internal class Level : Map
     {
-        public Level(int[][] data, Vector2 playerPos)
+        public bool Unlocked;
+        public string Name;
+        public Level(string name, int[][] data, Vector2 playerPos)
         {
+            Name = name;
             List<Position> pos = new();
             Size = new Vector2(data[0].Length, data.Length);
             int x = 0, y = 0;
@@ -29,8 +32,13 @@ namespace MoveOrDie.Entities
             }
             Init(Size, pos, playerPos);
         }
-        public Level(Vector2 size, List<Position> positions)
+        public Level(string name, Vector2 size, List<Position> positions)
             : base(size, positions, new Vector2(0, 0))
-        { }
+        { Name = name; }
+
+        public void Unlock()
+        {
+            Unlocked = true;
+        }
     }
 }
