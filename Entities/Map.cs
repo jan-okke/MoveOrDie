@@ -17,6 +17,8 @@ namespace MoveOrDie.Entities
         protected Position[,] Positions;
         protected Vector2? PlayerPosition;
         protected Vector2 PlayerPositionInitial;
+        protected int Actions = 0;
+        protected TimeSpan Record = new TimeSpan();
 
         public Map()
         {
@@ -39,9 +41,13 @@ namespace MoveOrDie.Entities
         {
             Init(size, positions, playerPos);
         }
-        public void Draw()
+        public void Draw(TimeSpan gameTime)
         {
             if (PlayerPosition is null) return;
+            Console.Write($"Time: {gameTime} Turns: {Actions}");
+            if (Actions > 0) Console.Write($" Average Turn Time: {gameTime / Actions}");
+            Console.WriteLine();
+            if (Record.TotalMilliseconds > 0) Console.WriteLine($"Record: {Record}");
             for (int y = 0; y < Size.Y; y++)
             {
                 for (int x = 0; x < Size.X; x++)
@@ -66,6 +72,7 @@ namespace MoveOrDie.Entities
         public void Move(Direction direction)
         {
             if (PlayerPosition is null) throw new Exception("Player Position was null");
+            Actions++;
             switch (direction)
             {
                 case Direction.Left:

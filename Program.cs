@@ -8,10 +8,11 @@ namespace MoveOrDie
     {
         static bool PlayLevel(Level level)
         {
+            DateTime start = DateTime.Now;
             while (true)
             {
                 Console.Clear();
-                level.Draw();
+                level.Draw(DateTime.Now - start);
                 var key = Console.ReadKey(true);
                 switch (key.Key)
                 {
@@ -38,8 +39,9 @@ namespace MoveOrDie
                 {
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("You won!");
+                    Console.WriteLine($"You won! Final Time: {DateTime.Now - start}");
                     Console.ResetColor();
+                    level.SetRecord(DateTime.Now - start);
                     return true;
                 }
             }
@@ -101,6 +103,7 @@ namespace MoveOrDie
                 }
                 catch { }
             }
+            // Add TIMER => Gold Silber Bronze
         }
     }
 }

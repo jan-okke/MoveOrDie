@@ -42,11 +42,19 @@ namespace MoveOrDie.Entities
             PlayerPosition.Y = PlayerPositionInitial.Y;
             GameOver = false;
             MapComplete = false;
+            Actions = 0;
         }
 
         public void Unlock()
         {
             Unlocked = true;
+        }
+
+        public void SetRecord(TimeSpan record)
+        {
+            if (this.Record.TotalMilliseconds == 0) this.Record = record;
+            if (record < this.Record)
+                this.Record = record;
         }
     }
 }
