@@ -62,7 +62,8 @@ namespace MoveOrDie
                 var key = Console.ReadKey(true);
                 switch (key.Key)
                 {
-                    case ConsoleKey.Spacebar:
+                    
+                    case ConsoleKey.Spacebar or ConsoleKey.A:
                         var level = LevelFactory.Levels[selectedLevel];
                         level.RelocatePlayer();
                         return level;
@@ -92,7 +93,7 @@ namespace MoveOrDie
                     }
                     catch { }
                 }
-                Console.ReadLine();
+                Console.ReadKey();
             }
         }
     }

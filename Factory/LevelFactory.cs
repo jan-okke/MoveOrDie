@@ -38,10 +38,27 @@ namespace MoveOrDie.Factory
             },
             playerPos: new Vector2(1, 1)
         );
+
+        public static Level Level3 = new Level(
+            name: "Level 3",
+            data: new int[][]
+            {
+                new int[] {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
+                new int[] {2, 0, 0, 3, 0, 0, 4, 3, 3, 2, 2, 2, 0, 0, 2, 2 },
+                new int[] {2, 3, 0, 0, 0, 2, 2, 0, 0, 0, 2, 3, 0, 2, 2, 2 },
+                new int[] {2, 0, 2, 3, 0, 3, 2, 2, 2, 0, 0, 0, 0, 2, 2, 2 },
+                new int[] {2, 2, 2, 0, 0, 2, 0, 3, 0, 0, 2, 3, 0, 0, 2, 2 },
+                new int[] {2, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 2 },
+                new int[] {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 }
+            },
+            playerPos: new Vector2(14, 5)
+        );
+
         public static List<Level> Levels = new List<Level>
         {
             Level1,
             Level2,
+            Level3,
         };
     }
 }
