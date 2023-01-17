@@ -23,6 +23,8 @@ namespace MoveOrDie
                         level.Move(Direction.Right); break;
                     case ConsoleKey.LeftArrow:
                         level.Move(Direction.Left); break;
+                    case ConsoleKey.Escape:
+                        throw new Exception();
                 }
                 if (level.GameOver)
                 {
@@ -63,7 +65,7 @@ namespace MoveOrDie
                 switch (key.Key)
                 {
                     
-                    case ConsoleKey.Spacebar or ConsoleKey.A:
+                    case ConsoleKey.Spacebar or ConsoleKey.A or ConsoleKey.Enter:
                         var level = LevelFactory.Levels[selectedLevel];
                         level.RelocatePlayer();
                         return level;
@@ -85,15 +87,19 @@ namespace MoveOrDie
             {
                 var level = ChooseLevel();
                 var index = LevelFactory.Levels.IndexOf(level);
-                if (PlayLevel(level))
+                try
                 {
-                    try
+                    if (PlayLevel(level))
                     {
-                        LevelFactory.Levels[index + 1].Unlock();
+                        try
+                        {
+                            LevelFactory.Levels[index + 1].Unlock();
+                        }
+                        catch { }
                     }
-                    catch { }
+                    Console.ReadKey();
                 }
-                Console.ReadKey();
+                catch { }
             }
         }
     }
