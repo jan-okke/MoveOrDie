@@ -63,13 +63,16 @@ namespace MoveOrDie
                 switch (key.Key)
                 {
                     case ConsoleKey.Spacebar:
-                        return LevelFactory.Levels[selectedLevel];
+                        var level = LevelFactory.Levels[selectedLevel];
+                        level.RelocatePlayer();
+                        return level;
+                        //return LevelFactory.Levels[selectedLevel];
                     case ConsoleKey.UpArrow:
                         if (selectedLevel == 0) continue;
                         selectedLevel--;
                         break;
                     case ConsoleKey.DownArrow:
-                        if (selectedLevel == LevelFactory.Levels.Count) continue;
+                        if (selectedLevel == LevelFactory.Levels.Count - 1) continue;
                         if (LevelFactory.Levels[selectedLevel + 1].Unlocked) selectedLevel++;
                         break;
                 }

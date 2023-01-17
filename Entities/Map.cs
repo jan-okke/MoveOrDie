@@ -15,7 +15,8 @@ namespace MoveOrDie.Entities
         public bool MapComplete = false;
         protected Vector2 Size;
         protected Position[,] Positions;
-        private Vector2? PlayerPosition;
+        protected Vector2? PlayerPosition;
+        public Vector2 PlayerPositionInitial;
 
         public Map()
         {

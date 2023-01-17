@@ -36,6 +36,14 @@ namespace MoveOrDie.Entities
             : base(size, positions, new Vector2(0, 0))
         { Name = name; }
 
+        public void RelocatePlayer()
+        {
+            PlayerPosition.X = PlayerPositionInitial.X;
+            PlayerPosition.Y = PlayerPositionInitial.Y;
+            GameOver = false;
+            MapComplete = false;
+        }
+
         public void Unlock()
         {
             Unlocked = true;
