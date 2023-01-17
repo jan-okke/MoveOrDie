@@ -23,7 +23,7 @@ namespace MoveOrDie.Factory
             },
             playerPos: new Vector2(1, 1)
         )
-        { Unlocked = true, PlayerPositionInitial = new(1, 1) };
+        { Unlocked = true };
 
         public static Level Level2 = new Level(
             name: "Level 2",
@@ -37,8 +37,7 @@ namespace MoveOrDie.Factory
                 new int[] {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2}
             },
             playerPos: new Vector2(1, 1)
-        )
-        { PlayerPositionInitial = new(1, 1)};
+        );
         public static List<Level> Levels = new List<Level>
         {
             Level1,

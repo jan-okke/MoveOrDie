@@ -16,7 +16,7 @@ namespace MoveOrDie.Entities
         protected Vector2 Size;
         protected Position[,] Positions;
         protected Vector2? PlayerPosition;
-        public Vector2 PlayerPositionInitial;
+        protected Vector2 PlayerPositionInitial;
 
         public Map()
         {
@@ -32,6 +32,7 @@ namespace MoveOrDie.Entities
             {
                 Positions[i % size.X, i / size.X] = positions[i];
             }
+            PlayerPositionInitial = new Vector2(playerPos.X, playerPos.Y);
             PlayerPosition = playerPos;
         }
         public Map(Vector2 size, List<Position> positions, Vector2 playerPos)
